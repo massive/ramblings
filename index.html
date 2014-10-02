@@ -1,1 +1,24 @@
-Hello world
+<document>
+<head>
+<script src="https://d26b395fwzu5fz.cloudfront.net/3.0.5/keen.min.js"></script>
+<script type="text/javascript">
+  var client = new Keen({
+  projectId: "your_project_id",
+  readKey: "your_read_key"
+});
+Keen.ready(function(){
+  var query = new Keen.Query("average", {
+    eventCollection: "speedtest",
+    targetProperty: "download",
+    groupBy: "keen.timestamp"
+  });
+  client.draw(query, document.getElementById("my_chart"), {
+    // Custom configuration here
+  });
+});
+</script>
+</head>
+<body>
+  <div id="my_chart"></div>
+</body>
+</document>
