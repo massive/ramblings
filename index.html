@@ -13,7 +13,8 @@ Keen.ready(function(){
     groupBy: "keen.timestamp"
   });
   client.draw(query, document.getElementById("my_chart"), {
-    // Custom configuration here
+      chartType: "linechart",
+      title: "Sonera 4G Nopeus"
   });
 });
 </script>
