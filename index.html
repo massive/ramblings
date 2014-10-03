@@ -7,53 +7,31 @@
   readKey: "f1128bd191c5e885ef6e3bdbe3b814657c112d221e8b0b851d34636e6afc7d1add229a39aca75b77a2b4ea29cbb234c693558e8e186f2db6545f5ac49ae1fbe890ea8dea606582a6d8aac77eba7261391f97e87c444a8f240a008b06b31850759e5cb6f0b04495b8dff8ae8ac551d1a3"
 });
 Keen.ready(function(){
-  var dlQuery = new Keen.Query("average", {
+  var query = new Keen.Query("average", {
     eventCollection: "speedtest",
     targetProperty: "download",
     groupBy: "keen.timestamp"
   });
+  client.draw(query, document.getElementById("my_chart"), {
+      chartType: "linechart",
+      title: "Sonera 4G Download"
+  });
   
-  var ulQuery = new Keen.Query("average", {
+  var query = new Keen.Query("average", {
     eventCollection: "speedtest",
     targetProperty: "upload",
     groupBy: "keen.timestamp"
   });
-  
-client.run([dlQuery, ulQuery], function(response){ // run the queries
-
-    var result1 = response[0].result  // data from first query
-    var result2 = response[1].result  // data from second query
-    var data = []  // place for combined results
-    var i=0
-
-    while (i < result1.length) {
-
-        data[i]={ // format the data so it can be charted
-            timeframe: result1[i]["timeframe"],
-            value: [
-                { category: "Pageviews", result: result1[i]["value"] },
-                { category: "Visitors", result: result2[i]["value"] }
-            ]
-        }
-        if (i == result1.length-1) { // chart the data
-            window.chart = new Keen.Visualization({result: data}, document.getElementById('pageviews'), {
-                chartType: "linechart",
-                title: " ",
-                chartOptions: {
-                    hAxis: {
-                        format:'MMM d',
-                        gridlines:  {count: 12}
-                    }
-                }
-            });
-        }
-        i++;
-    }
-});
+  client.draw(query, document.getElementById("my_chart2"), {
+      chartType: "linechart",
+      title: "Sonera 4G Upload"
+  });
 });
 </script>
 </head>
 <body>
   <div id="my_chart"></div>
+  <div id="my_chart2"></div>
+
 </body>
 </document>
