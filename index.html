@@ -8,28 +8,26 @@
 });
 Keen.ready(function(){
   var query = new Keen.Query("minimum", {
-    eventCollection: "speedtest2",
+    eventCollection: "speedtest3",
     timeframe: "this_week",
-    targetProperty: "download",
+    targetProperty: "value",
     interval: "hourly",
-    //groupBy: "type"
+    groupBy: "type"
   });
   client.draw(query, document.getElementById("my_chart"), {
-        title: "Download"
-    // Custom configuration here
+    title: "Sonera 4G LTE Nopeus",
+    labelMapping: {
+      "download": "Download",
+      "upload": "Upload"
+    },
+    chartOptions: {
+        vAxis: {title: 'MBit/s',  titleTextStyle: {color: '#333'}},
+        width: 700,
+        hAxis: { slantedText: true, slantedTextAngle: 45},
+    }
   });
 
-  var query = new Keen.Query("minimum", {
-    eventCollection: "speedtest2",
-    timeframe: "this_week",
-    targetProperty: "upload",
-    interval: "hourly",
-    //groupBy: "type"
-  });
-  client.draw(query, document.getElementById("my_chart2"), {
-        title: "Upload"
-    // Custom configuration here
-  });
+
 
 });
 </script>
