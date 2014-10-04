@@ -9,7 +9,7 @@
 Keen.ready(function(){
   var query = new Keen.Query("minimum", {
     eventCollection: "speedtest3",
-    timeframe: "this_week",
+    timeframe: "last_5_days",
     targetProperty: "value",
     interval: "hourly",
     groupBy: "type"
