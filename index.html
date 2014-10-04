@@ -13,10 +13,9 @@ Keen.ready(function(){
     targetProperty: "download",
     interval: "hourly",
     //groupBy: "type"
-    title: "Download"
-
   });
   client.draw(query, document.getElementById("my_chart"), {
+        title: "Download"
     // Custom configuration here
   });
 
@@ -25,11 +24,10 @@ Keen.ready(function(){
     timeframe: "this_week",
     targetProperty: "upload",
     interval: "hourly",
-    title: "Upload"
-
     //groupBy: "type"
   });
   client.draw(query, document.getElementById("my_chart2"), {
+        title: "Upload"
     // Custom configuration here
   });
 
